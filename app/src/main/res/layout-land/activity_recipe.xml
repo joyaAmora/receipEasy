@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <RadioGroup
-        android:id="@+id/radioGroup"
+        android:id="@+id/recipeRadioGroup"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -23,7 +23,7 @@
             android:layout_weight="1" />
 
         <RadioButton
-            android:id="@+id/radioButton"
+            android:id="@+id/radioButtonBreakfast"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Breakfast" />
@@ -34,7 +34,7 @@
             android:layout_weight="1" />
 
         <RadioButton
-            android:id="@+id/radioButton2"
+            android:id="@+id/radioButtonBrunch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Brunch" />
@@ -45,7 +45,7 @@
             android:layout_weight="1" />
 
         <RadioButton
-            android:id="@+id/radioButton3"
+            android:id="@+id/radioButtonDiner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Diner" />
@@ -57,7 +57,7 @@
     </RadioGroup>
 
     <EditText
-        android:id="@+id/editTextTextPersonName"
+        android:id="@+id/editTextPersonName"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -68,10 +68,10 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/recipeRadioGroup" />
 
     <TimePicker
-        android:id="@+id/timePicker"
+        android:id="@+id/timePickerRecipe"
         android:layout_width="0dp"
         android:layout_height="130dp"
         android:layout_marginStart="8dp"
@@ -79,18 +79,19 @@
         android:layout_marginEnd="8dp"
         android:timePickerMode="spinner"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
-        app:layout_constraintStart_toEndOf="@+id/textView"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toEndOf="@+id/textViewDuration"
+        app:layout_constraintTop_toBottomOf="@+id/editTextPersonName" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/textViewDuration"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Duration"
-        app:layout_constraintBottom_toBottomOf="@+id/timePicker"
+        app:layout_constraintBottom_toBottomOf="@+id/timePickerRecipe"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/timePicker" />
+        app:layout_constraintTop_toTopOf="@+id/timePickerRecipe" />
 
     <EditText
         android:id="@+id/editTextTextMultiLine"
@@ -104,27 +105,27 @@
         android:gravity="start|top"
         android:hint="Description"
         android:inputType="textMultiLine"
-        app:layout_constraintBottom_toTopOf="@+id/button4"
+        app:layout_constraintBottom_toTopOf="@+id/buttonSave"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/timePicker"
+        app:layout_constraintStart_toEndOf="@+id/timePickerRecipe"
         app:layout_constraintTop_toTopOf="parent" />
 
     <Button
-        android:id="@+id/button3"
+        android:id="@+id/buttonDelete"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Delete"
         android:textColor="#F44336"
         android:textColorLink="#FFFFFF"
-        app:layout_constraintBaseline_toBaselineOf="@+id/button4"
-        app:layout_constraintEnd_toStartOf="@+id/button4"
+        app:layout_constraintBaseline_toBaselineOf="@+id/buttonSave"
+        app:layout_constraintEnd_toStartOf="@+id/buttonSave"
         app:layout_constraintHorizontal_bias="0.5"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonSave"
         style="@style/Widget.AppCompat.Button.Colored"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -134,7 +135,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toEndOf="@+id/button3" />
+        app:layout_constraintStart_toEndOf="@+id/buttonDelete" />
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline2"
