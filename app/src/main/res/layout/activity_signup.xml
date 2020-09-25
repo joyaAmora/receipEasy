@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".LoginActivity">
+    tools:context=".controller.LoginActivity">
 
     <androidx.constraintlayout.widget.Guideline
         android:id="@+id/guideline"
@@ -33,24 +33,24 @@
         android:ems="10"
         android:hint="Email"
         android:inputType="textEmailAddress"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordLogin"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPasswordLogin"
-        app:layout_constraintStart_toStartOf="@+id/editTextPasswordLogin" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextPassword"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPassword"
+        app:layout_constraintStart_toStartOf="@+id/editTextPassword" />
 
     <EditText
-        android:id="@+id/editTextPasswordLogin"
+        android:id="@+id/editTextPassword"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
         android:ems="10"
         android:hint="Password"
         android:inputType="textPassword"
-        app:layout_constraintBottom_toTopOf="@+id/editTextPassword2Login"
-        app:layout_constraintEnd_toEndOf="@+id/editTextPassword2Login"
-        app:layout_constraintStart_toStartOf="@+id/editTextPassword2Login" />
+        app:layout_constraintBottom_toTopOf="@+id/editTextPasswordConfirmation"
+        app:layout_constraintEnd_toEndOf="@+id/editTextPasswordConfirmation"
+        app:layout_constraintStart_toStartOf="@+id/editTextPasswordConfirmation" />
 
     <EditText
-        android:id="@+id/editTextPassword2Login"
+        android:id="@+id/editTextPasswordConfirmation"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -61,7 +61,7 @@
         android:inputType="textPassword"
         app:layout_constraintBottom_toTopOf="@+id/guideline"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
+        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintWidth_max="300dp"/>
+        app:layout_constraintWidth_max="300dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

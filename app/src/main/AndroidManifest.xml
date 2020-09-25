@@ -9,16 +9,21 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".RecipeActivity" android:label="Add Recipe" android:parentActivityName=".RecipesActivity"></activity>
         <activity
-            android:name=".RecipesActivity"
+            android:name=".controller.RecipeActivity"
+            android:label="Add Recipe"
+            android:parentActivityName=".controller.RecipesActivity">
+
+        </activity>
+        <activity
+            android:name=".controller.RecipesActivity"
             android:label="Recipes" />
         <activity
-            android:name=".SignUpActivity"
+            android:name=".controller.SignUpActivity"
             android:label="Sign Up"
-            android:parentActivityName=".LoginActivity" />
+            android:parentActivityName=".controller.LoginActivity" />
         <activity
-            android:name=".LoginActivity"
+            android:name=".controller.LoginActivity"
             android:label="Log In"
             android:launchMode="singleTop">
             <intent-filter>
