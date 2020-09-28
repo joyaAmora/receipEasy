@@ -6,7 +6,7 @@
     android:layout_height="match_parent">
 
     <RadioGroup
-        android:id="@+id/RadioGroup"
+        android:id="@+id/radioGroupCategory"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -50,7 +50,7 @@
             android:id="@+id/radioButtonDiner"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:tag="diner"
+            android:tag="dinner"
             android:text="Diner" />
 
         <Space
@@ -71,7 +71,7 @@
         android:inputType="textPersonName"
         app:layout_constraintEnd_toStartOf="@+id/guideline2"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/RadioGroup" />
+        app:layout_constraintTop_toBottomOf="@+id/radioGroupCategory" />
 
     <TimePicker
         android:id="@+id/timePickerRecipe"

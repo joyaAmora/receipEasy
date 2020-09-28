@@ -13,9 +13,9 @@ public class RecipesService {
         recipes = new HashMap<>();
 
         add("breakfast", "A", 0, 20, "aaa a aaaaaa", 0);
-        add("lunch", "B", 1, 30, "bbbbbb bb b bbb", 0);
+        add("brunch", "B", 1, 30, "bbbbbb bb b bbb", 0);
         add("dinner", "C", 6, 0, "c ccc ccccc cc", 0);
-        add("lunch", "D", 0, 5, "dd", 1);
+        add("brunch", "D", 0, 5, "dd", 1);
     }
 
     public static RecipesService getInstance() {

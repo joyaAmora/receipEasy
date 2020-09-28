@@ -2,6 +2,8 @@ package com.example.receipeasy.controller;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DividerItemDecoration;
+import androidx.recyclerview.widget.LinearLayoutManager;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -17,12 +19,17 @@ import com.example.receipeasy.model.UserService;
 import java.util.ArrayList;
 import java.util.Random;
 
-public class RecipesActivity extends AppCompatActivity {
+public class RecipesActivity extends AppCompatActivity implements OnRecipeClickListener {
     private ActivityRecipesBinding binding;
     private final static int ADD_RECIPE_REQUEST = 1;
     private final static int EDIT_RECIPE_REQUEST = 2;
 
     public final static String KEY_EDIT_RECIPE_EXTRA = "ca.jphaneuf.edit-recipe-extra";
+    private RecipesAdapter recipesAdapter;
+
+    private ArrayList<Recipe> getUserRecipes() {
+        return RecipesService.getInstance().getAll(getCurrentUserId());
+    }
 
     private int getCurrentUserId() {
         return UserService.getInstance().getCurrentUser().getId();
@@ -34,6 +41,15 @@ public class RecipesActivity extends AppCompatActivity {
         binding = ActivityRecipesBinding.inflate(getLayoutInflater());
         setContentView(binding.getRoot());
 
+        binding.recyclerRecipes.setHasFixedSize(true);
+        binding.recyclerRecipes.addItemDecoration(new DividerItemDecoration(this, DividerItemDecoration.VERTICAL));
+        binding.recyclerRecipes.setLayoutManager(new LinearLayoutManager(this));
+
+        recipesAdapter = new RecipesAdapter(getUserRecipes(), this);
+
+
+        binding.recyclerRecipes.setAdapter(recipesAdapter);
+
         binding.fabAdd.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -42,25 +58,8 @@ public class RecipesActivity extends AppCompatActivity {
                 startActivity(addRecipe);
             }
         });
-
-        binding.buttonEdit.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ArrayList<Recipe> recipes = RecipesService.getInstance().getAll(getCurrentUserId());
-                int recipesCount = recipes.size();
-                if (recipesCount> 0) {
-                    Random random = new Random();
-                    Recipe recipe = recipes.get(random.nextInt(recipesCount));
-
-                    Intent editRecipeIntent = new Intent(RecipesActivity.this, RecipeActivity.class);
-                    editRecipeIntent.putExtra(KEY_EDIT_RECIPE_EXTRA, recipe);
-                    startActivityForResult(editRecipeIntent, EDIT_RECIPE_REQUEST);
-                }
-                else {
-                    Toast.makeText(RecipesActivity.this, "No recipe!", Toast.LENGTH_SHORT).show();
-                }
-            }
-        });
+/*
+        ;*/
 
         binding.buttonLogOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -72,9 +71,6 @@ public class RecipesActivity extends AppCompatActivity {
                 finish();
             }
         });
-
-        refreshRecipes();
-
     }
 
 
@@ -84,12 +80,17 @@ public class RecipesActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (resultCode == RESULT_OK & (requestCode == ADD_RECIPE_REQUEST || requestCode == EDIT_RECIPE_REQUEST)){
-            refreshRecipes();
+            recipesAdapter.setRecipes(getUserRecipes());
+            recipesAdapter.notifyDataSetChanged();
+
         }
     }
 
-    private void refreshRecipes(){
-        User currentUser = UserService.getInstance().getCurrentUser();
-        binding.textRecipes.setText(RecipesService.getInstance().getAll(getCurrentUserId()).toString());
+    @Override
+    public void onRecipeClicked(Recipe recipe) {
+        Intent editRecipeIntent = new Intent(RecipesActivity.this, RecipeActivity.class);
+        editRecipeIntent.putExtra(KEY_EDIT_RECIPE_EXTRA, recipe);
+        startActivityForResult(editRecipeIntent, EDIT_RECIPE_REQUEST);
+
     }
 }
