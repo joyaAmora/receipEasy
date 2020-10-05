@@ -7,7 +7,9 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.receipeasy.api.UserRequestListener;
 import com.example.receipeasy.databinding.ActivitySignupBinding;
+import com.example.receipeasy.model.User;
 import com.example.receipeasy.model.UserService;
 
 public class SignUpActivity extends AppCompatActivity {
@@ -28,15 +30,19 @@ public class SignUpActivity extends AppCompatActivity {
                 if (password.compareTo(passwordConfirmation) == 0){
                     String username = binding.editTextEmailAddress.getText().toString();
 
-                    if (UserService.getInstance().signUp(username, password)){
-                        Intent signedUp = new Intent(SignUpActivity.this, RecipesActivity.class);
-                        startActivity(signedUp);
+                    UserService.getInstance().signUp(username, password, new UserRequestListener() {
+                        @Override
+                        public void onResponse(boolean success) {
+                            if (success){
+                                Intent signedUp = new Intent(SignUpActivity.this, RecipesActivity.class);
+                                startActivity(signedUp);
 
-                        finishAffinity();
-                    }
-                    else {
-                        Toast.makeText(SignUpActivity.this, "Invalid infos...", Toast.LENGTH_SHORT).show();
-                    }
+                                finishAffinity();
+                            } else {
+                                Toast.makeText(SignUpActivity.this, "Invalid infos...", Toast.LENGTH_SHORT).show();
+                            }
+                        }
+                    }, SignUpActivity.this);
                 }
                 else{
                     Toast.makeText(SignUpActivity.this, "Password does not match", Toast.LENGTH_SHORT).show();

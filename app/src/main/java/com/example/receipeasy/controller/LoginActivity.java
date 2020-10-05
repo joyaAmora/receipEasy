@@ -9,6 +9,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
+import com.example.receipeasy.api.UserRequestListener;
 import com.example.receipeasy.databinding.ActivityLoginBinding;
 import com.example.receipeasy.model.User;
 import com.example.receipeasy.model.UserService;
@@ -28,12 +29,18 @@ public class LoginActivity extends AppCompatActivity {
                 String username = binding.editTextEmailAddress.getText().toString();
                 String password = binding.editTextPassword2Login.getText().toString();
 
-                if (UserService.getInstance().logIn(username, password)){
-                    loggedIn();
-                }
-                else {
-                    Toast.makeText(LoginActivity.this, "Invalid credentials!", Toast.LENGTH_SHORT).show();
-                }
+                UserService.getInstance().logIn(username, password, new UserRequestListener() {
+                    @Override
+                    public void onResponse(boolean success) {
+                        if (success){
+                            loggedIn();
+                        }
+                        else {
+                            Toast.makeText(LoginActivity.this, "Invalid credentials!", Toast.LENGTH_SHORT).show();
+                        }
+                    }
+                }, LoginActivity.this);
+
             }
         });
 
